@@ -62,6 +62,7 @@ class ProductsController extends \Core\Controller
         View::renderTemplate('update-product.blade.html');
     }
 
+    
     public function deleteAction()
     {
         $products = new Products();
