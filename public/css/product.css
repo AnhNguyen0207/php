@@ -1,0 +1,57 @@
+.product {
+    display: block;
+    color: black;
+    font-size: 13px;
+}
+
+.img-product {
+    background-position: center;
+    background-size: cover;
+    padding-bottom: 60%;
+    width: 100%;
+    border-radius: 5px;
+}
+
+.img-product:hover .info-product {
+    opacity: 1;
+}
+
+.product:hover .overlay {
+    opacity: 1;
+}
+
+.product .overlay {
+    opacity: 0.13;
+    top: 0;
+    -webkit-transition: all ease-in-out .2s;
+    -o-transition: all ease-in-out .2s;
+    transition: all ease-in-out .2s;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.00345888) 48%, rgba(0, 0, 0, 0.222924) 69.56%, rgba(0, 0, 0, 0.267246) 74.5%, rgba(0, 0, 0, 0.30729) 79.44%, rgba(0, 0, 0, 0.341035) 82.39%, rgba(0, 0, 0, 0.367336) 85.33%, rgba(0, 0, 0, 0.385796) 87.28%, rgba(0, 0, 0, 0.396541) 89.22%, rgba(0, 0, 0, 0.4) 91.17%);
+}
+
+.product:hover .info-product {
+    opacity: 1;
+}
+
+.info-product {
+    opacity: 0;
+    -webkit-transition: all ease-in-out .2s;
+    -o-transition: all ease-in-out .2s;
+    transition: all ease-in-out .2s;
+}
+
+.info-product-bottom {
+    width: 80%;
+    bottom: 0;
+    color: white;
+}
+
+.featured {
+    color: #ffc200 !important;
+}
+
+.liked {
+    color: #ff6262 !important;
+}

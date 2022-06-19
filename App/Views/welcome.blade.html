@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/app.css">
+    <!--    icon awesome 6-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+</head>
+<body>
+<div id="header" class="container-fluid fixed-top bg-white p-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <a class="navbar-brand" href="/">
+                        <img class="rounded logo-md zoom" loading="lazy"
+                             src="/image/logo.png">
+                    </a>
+                    <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse" id="navbarSupportedContent" style="">
+                        <ul class="navbar-nav me-auto">
+                            <li class="nav-item">
+                                <a class="nav-link text-black" href="/">Trang chủ</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-black" href="/product">Sản phẩm</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-black" href="/product">Phụ kiện</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-black" href="/combo">Combo</a>
+                            </li>
+                        </ul>
+                        <ul id="" class="nav navbar-nav navbar-right d-flex">
+                            <li class="nav-item cursor-pointer"
+                                data-bs-toggle="offcanvas" data-bs-target="#canvasCart">
+                                <small>
+                                    <i class="fa-solid fa-cart-shopping"></i>
+                                    <span class="badge badge-numb-product rounded-pill bg-danger ms-1">4</span>
+                                </small>
+                            </li>
+                            <li class="nav-item">
+                                <button data-bs-toggle="modal" data-bs-target="#modalLogin"
+                                        class="btn bg-app rounded-pill border-0">
+                                    <i class="fas fa-arrow-circle-right me-1" aria-hidden="true"></i>
+                                    Đăng nhập
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="mt-5 pt-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-5 my-4">
+                <h1 class="text-app"><b>Graduate Store</b></h1>
+                <br>
+                <p><b>Graduate Store</b> hệ thống bán lẻ điện thoại uy tín chất lượng dịch vụ tốt tại Hà Nội. Với các dòng
+                    điện thoại mới nhất hiện nay của các thương hiệu Apple, Xiaomi, Samsung, Huawei... Tất cả các sản phẩm do <b>Graduate
+                        Store</b>
+                    bán ra đều được tuân thủ điều kiện bảo hành của nhà cung cấp, hãng sản xuất. Nếu có vấn đề về chất
+                    lượng sản phẩm, <b>Graduate Store</b> cam kết sẽ đền bù bạn gấp đôi </p>
+                <br>
+                <div class="row d-lg-flex d-none">
+                    <div class="col-lg-6 my-2">
+                        <div class="shadow bg-white rounded-10 h-100 p-4">
+                            <div class="fw-bold fs-5">Bảo hành 1 năm</div>
+                            <div class="">Toàn bộ sản phẩm của shop đều đính kèm gói bảo hành 1 năm hoàn toàn free</div>
+                            <div class="text-center">
+                                <img src="https://png.pngtree.com/png-vector/20190217/ourmid/pngtree-1-year-warranty-vector-template-design-illustration-png-image_555288.jpg" alt="" class="w-75 text-center">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 my-2">
+                        <div class="shadow bg-white rounded-10 h-100 p-4">
+                            <div class="fw-bold fs-5">500+</div>
+                            <div class="">Sản phẩm từ tất cả các thương hiệu nổi tiếng</div>
+                            <div class="text-center">
+                                <img src="image/all%20trademark.png" alt="" class="w-100 text-center mt-5">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-7 position-relative">
+                <div style="padding-bottom: 80%" class="card-img"></div>
+                <img style="z-index: 100; top: 10%" class="scroll-vertical-up-md w-90 position-absolute"
+                     src="/image/phone.png">
+                <img style="z-index: 100; top: 40%" class="scroll-vertical-up-md w-90 position-absolute"
+                     src="/image/favpng_iphone-samsung-galaxy-mobile-phone-accessories-headphones-headset.png">
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 mt-5 d-flex align-items-center justify-content-between mb-5">
+                <div class="text-start text-bold fs-4 fw-bold">
+                    Sản phẩm nổi bật
+                </div>
+                <a href="/product" class="text-end d-block text-black-50 fs-6">
+                    <span>Xem tất cả sản phẩm</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 mt-5 d-flex align-items-center justify-content-between mb-5">
+                <div class="text-start text-bold fs-4 fw-bold">
+                    Combo nổi bật
+                </div>
+                <a href="/product" class="text-end d-block text-black-50 fs-6">
+                    <span>Xem tất cả combo</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="offcanvas offcanvas-end" tabindex="-1" id="canvasCart" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header">
+        <h5 id="offcanvasRightLabel">Offcanvas right</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        ...
+    </div>
+</div>
+<script>
+
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+<script src="/js/app.js"></script>
+</body>
+</html>

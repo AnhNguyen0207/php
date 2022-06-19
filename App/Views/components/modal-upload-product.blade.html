@@ -1,0 +1,106 @@
+<div class="modal fade" id="modalUploadProduct" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Đăng sản phẩm</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="" id="formUploadProduct">
+                    <label for="productImage">Hình ảnh</label>
+                    <div class="px-4">
+                        <input class="form-control my-2" type="text" placeholder="Dán url vào đây">
+                        <input class="form-control my-2" type="text" placeholder="Dán url vào đây">
+                        <input class="form-control my-2" type="text" placeholder="Dán url vào đây">
+                    </div>
+                    <div class="form-group">
+                        <label>Tên sản phẩm</label>
+                        <input class="form-control my-2" type="text" placeholder="Tên sản phẩm">
+                    </div>
+                    <div class="form-group">
+                        <label>Mô tả</label>
+                        <textarea class="form-control my-2" cols="3" type="text" placeholder="Mô tả"></textarea>
+                    </div>
+                    <div class="form-group my-4">
+                        <label>Danh mục</label>
+                        <div id="categoryproduct" class="dropdown dropdown-select">
+                            <button class="btn w-100 text-start d-flex justify-content-between rounded-20 bg-gray border-0 p-2 px-3"
+                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <div class="print fs-6">
+                                    <div class="text-gray fs-6">
+                                        Chọn danh mục sản phẩm
+                                    </div>
+                                </div>
+                                <div>
+                                    <i class="fas fa-angle-down"></i>
+                                </div>
+                            </button>
+                            <ul class="dropdown-menu rounded-10 shadow-6 transition-0 border-0 w-100" aria-labelledby="selectTeacher">
+                                @if(isset($categories))
+                                    @foreach($categories['data'] as $category)
+                                        <li class="d-flex align-items-center cursor-pointer w-100">
+                                            <img src="{{$category['image_url']}}" alt="" class="logo-xl">
+                                            <a data-value="{{$category['id']}}" class="flex-fill dropdown-item mx-2 px-4 py-2 rounded-10 w-auto">{{$category['name']}}</a>
+                                        </li>
+                                    @endforeach
+                                @endif
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="form-group my-4">
+                        <lable>Chọn loại</lable>
+                        <div id="type-product" class="dropdown dropdown-select">
+                            <button class="btn w-100 text-start d-flex justify-content-between rounded-20 bg-gray border-0 p-2 px-3"
+                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <div class="print fs-6">
+                                    <div class="text-gray fs-6">
+                                        Chọn loại
+                                    </div>
+                                </div>
+                                <div>
+                                    <i class="fas fa-angle-down"></i>
+                                </div>
+                            </button>
+                            <ul class="dropdown-menu rounded-10 shadow-6 transition-0 border-0 w-100">
+                                <li><a data-value="0" class="dropdown-item mx-2 px-4 py-2 rounded-10 w-auto">Điện thoại</a></li>
+                                <li><a data-value="1" class="dropdown-item mx-2 px-4 py-2 rounded-10 w-auto">Phụ kiện</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <label for="">Thông số</label>
+                    <div class="form-group d-flex justify-content-center">
+                        <table class="table border-0 table-borderless" style="width: 300px">
+                            <tr>
+                                <td>Ram: </td>
+                                <td><input data-type="ram" class="float-end" type="text"></td>
+                            </tr>
+                            <tr>
+                                <td class="text-nowrap">Màn hình: </td>
+                                <td><input data-type="display" class="float-end" type="text"></td>
+                            </tr>
+                            <tr>
+                                <td>Camera: </td>
+                                <td><input data-type="camera" class="float-end" type="text"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <label for="">Màu sắc</label>
+                    <div class="form-group">
+                        <div id="eachColor">
+                            <div class="px-4" data-type="color">
+                                <input class="name form-control my-2" type="text" placeholder="Tên màu">
+                                <input class="value form-control my-2" type="text" placeholder="Mã màu">
+                                <input class="image form-control my-2" type="text" placeholder="URL Hình ảnh minh họa">
+                            </div>
+                        </div>
+                        <a class="text-primary" href="">Thêm mục khác</a>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>

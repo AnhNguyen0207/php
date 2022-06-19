@@ -1,0 +1,28 @@
+.card-cart{
+    transition: all 2s ease-out;
+}
+.shopping-icon{
+    position: relative;
+    transition: all 0.3s ease;
+}
+.btn-price:focus .shopping-icon{
+    /*transform: rotate(-10deg);*/
+    /*animation-name: shopping-icon-move;*/
+    /*animation-duration: 4s;*/
+}
+
+@keyframes shopping-icon-move {
+    0%   {left:0px; top:0px;transform: rotate(-30deg)}
+    25%  {left:150px; top:-200px; transform: scale(4);color: #38D900}
+    50%  {left:700px; top:-800px;color: #56f156;transform: rotate(30deg)}
+    75%  {left:0px; top:-2000px; opacity: 0.5}
+    100% {left:0px; top:-2000px;}
+}
+
+.icon-trash:hover {
+    /*position: relative;*/
+    /*animation-name: icon-animation;*/
+    /*animation-duration: 0.5s;*/
+    /*animation-iteration-count: infinite;*/
+}
+
