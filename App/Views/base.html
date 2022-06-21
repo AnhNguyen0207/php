@@ -1,5 +1,5 @@
-<!doctype html>
-<html lang="vi">
+<!DOCTYPE html>
+<html>
 <head>
     <meta charset="utf-8">
     <meta property="og:type" content="website">
@@ -11,18 +11,14 @@
     <link rel="stylesheet" href="/css/app.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 </head>
-<body class="antialiased" style="overflow-x:hidden">
-<div>
-    <x-header/>
+<body>
+    {% include "components/header.blade.html" %}
 
-    <main>
-        <div class="container mt-5">
-            {{ $slot }}
-        </div>
-        <x-off-canvas-cart></x-off-canvas-cart>
-    </main>
-    <script>
-    </script>
+	<div class="container">
+        {% block body %}
+        {% endblock %}
+    </div>
+
     <script type="text/javascript" src="/js/app.js" defer></script>
     <script type="text/javascript" src="/js/axios.min.js"></script>
     <script type="text/javascript" src="/js/jquery.slim.min.js"></script>
@@ -32,7 +28,8 @@
     <script type="text/javascript" src="/js/sweet-alert.js"></script>
     <script type="text/javascript" src="/js/jquery.validate.min.js"></script>
     <script src="/js/cart.js" defer></script>
-</div>
+
+    {% block footer %}
+    {% endblock %}
 </body>
 </html>
-

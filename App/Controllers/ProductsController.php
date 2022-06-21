@@ -3,11 +3,17 @@ namespace App\Controllers;
 use \Core\View;
 use \App\Models\Products;
 class ProductsController extends \Core\Controller
+
 {
-    
+    public function testAction(){
+        $products = Products::getAll();
+        View::renderTemplate('test.html', [
+            'products' =>$products,
+        ]);
+    }
     public function  indexAction()
     {
-        $products = Products::getAll() ;
+        $products = Products::getAll();
         View::renderTemplate('welcome.blade.html',[
             'products' => $products
         ]);
@@ -27,7 +33,7 @@ class ProductsController extends \Core\Controller
             $products->setPrice($_POST['price']);
 
             $create = Products::create($products);
-
+            
             if($create)
             {
                 View::renderTemplate('manage.blade.html');
@@ -62,7 +68,7 @@ class ProductsController extends \Core\Controller
         View::renderTemplate('update-product.blade.html');
     }
 
-    
+
     public function deleteAction()
     {
         $products = new Products();
@@ -71,7 +77,6 @@ class ProductsController extends \Core\Controller
         {
             $products->setId($id);
             $delete = Products::delete($products);
-
             if($delete)
             {
                 View::renderTemplate('manage.blade.html');
@@ -79,4 +84,5 @@ class ProductsController extends \Core\Controller
         }
                 View::renderTemplate('manage.blade.html');
     }
+    
 }

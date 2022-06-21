@@ -18,11 +18,9 @@
                             <li class="nav-item">
                                 <a class="nav-link text-black" href="/">Trang chủ</a>
                             </li>
-                            @if(Auth::user())
                                 <li class="nav-item">
                                     <a class="nav-link text-black" href="/manage">Trang quản lý</a>
                                 </li>
-                            @endif
                             <li class="nav-item">
                                 <a class="nav-link text-black" href="/products">Sản phẩm</a>
                             </li>
@@ -41,12 +39,9 @@
                                     <span class="badge badge-numb-product rounded-pill bg-danger ms-1">4</span>
                                 </small>
                             </li>
-                            @if(Auth::user())
+                            {% if current_user %}
                                 <li class="nav-item cursor-pointer">
                                     <div class="dropdown">
-                                        <button class="btn outline-0 btn-secondary dropdown-toggle btn-sm bg-transparent py-0 text-black border-0" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <small>{{Auth::user()->email}}</small>
-                                        </button>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                             <li><a class="dropdown-item" href="/manage">Trang quản trị</a></li>
                                             <li><a class="dropdown-item" href="/product/create">Thêm sản phẩm</a></li>
@@ -55,14 +50,7 @@
                                         </ul>
                                     </div>
                                 </li>
-                            @endif
-                            {{--                            <li class="nav-item">--}}
-                            {{--                                <button data-bs-toggle="modal" data-bs-target="#modalLogin"--}}
-                            {{--                                        class="btn bg-app rounded-pill border-0">--}}
-                            {{--                                    <i class="fas fa-arrow-circle-right me-1" aria-hidden="true"></i>--}}
-                            {{--                                    Đăng nhập--}}
-                            {{--                                </button>--}}
-                            {{--                            </li>--}}
+                            {% endif %}
                         </ul>
                     </div>
                 </nav>

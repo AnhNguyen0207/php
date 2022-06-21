@@ -73,6 +73,7 @@
                     bán ra đều được tuân thủ điều kiện bảo hành của nhà cung cấp, hãng sản xuất. Nếu có vấn đề về chất
                     lượng sản phẩm, <b>Graduate Store</b> cam kết sẽ đền bù bạn gấp đôi </p>
                 <br>
+                  
                 <div class="row d-lg-flex d-none">
                     <div class="col-lg-6 my-2">
                         <div class="shadow bg-white rounded-10 h-100 p-4">
@@ -148,5 +149,11 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
 <script src="/js/app.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"></script>
+<script>
+         axios.get('http://php.com.vn:81/Products/test').then((t)=>{
+        console.log(t);
+    })
+</script>
 </body>
 </html>
