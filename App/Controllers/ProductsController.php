@@ -63,7 +63,6 @@ class ProductsController extends \Core\Controller
         $products = new Products();
         if (isset($_POST['submit'])) {
             $products->setName($_POST['name']);
-            $products->setCategoryId($_POST['product_category_id']);
             $products->setDescription($_POST['description']);
             $products->setImage($_POST['first_image']);
 
@@ -90,7 +89,6 @@ class ProductsController extends \Core\Controller
         {
             $products->setId($id);
             $products->setName($_POST['name']);
-            $products->setCategoryId($_POST['product_category_id']);
             $products->setDescription($_POST['description']);
             $products->setImage($_POST['first_image']);
             $products->setType($_POST['type']);
@@ -124,5 +122,11 @@ class ProductsController extends \Core\Controller
         }
                 View::renderTemplate('manage.blade.html');
     }
-    
+    public function apiTestAction(){
+        $products =[
+            
+        ];
+        print_r(json_encode($products));
+        View::renderTemplate('render.html');
+    }
 }

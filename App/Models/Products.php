@@ -8,7 +8,6 @@ class Products extends Model
 {
     private $id;
     private $name;
-    private $product_category_id;
     private $description;
     private $first_image;
     private $type;
@@ -41,15 +40,6 @@ class Products extends Model
        $this->name = $name; 
     }
 
-    function getCategoryId()
-    {
-        return $this->product_category_id;
-    }
-    function setCategoryId($product_category_id)
-    {
-       $this->product_category_id = $product_category_id; 
-    }
-    
     function getDescription()
     {
         return $this->description;
@@ -127,11 +117,16 @@ class Products extends Model
     
     public static function create(Products $products)
     {
-        $sql = "INSERT INTO products (name, product_category_id, description, first_image, type, memory, detail, price) 
-                VALUES ('$products->name','$products->product_category_id','$products->description','$products->first_image','$products->type','$products->memory','$products->detail','$products->price')";
+        $sql = "INSERT INTO products (name, description, first_image, type, memory, detail, price) 
+                VALUES ('$products->name','$products->description','$products->first_image','$products->type','$products->memory','$products->detail','$products->price')";
         $db = static::getDB();
         $stmt = $db->prepare($sql);
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
+        $item = "SELECT * FROM product_item where product_id = '$id'";
+        $i = $db->prepare($item);
+        $i->execute();
+        $product->items = $i->fetchAll();
         return $stmt->execute();
        
     

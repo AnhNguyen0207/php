@@ -39,6 +39,7 @@ $router->add('Products/create', ['controller' => 'Products', 'action' => 'create
 $router->add('Products/update', ['controller' => 'Products', 'action' => 'update']);
 $router->add('Products/delete', ['controller' => 'Products', 'action' => 'delete']);
 $router->add('Products/manage', ['controller' => 'Products', 'action' => 'manage']);
+$router->add('Products/api', ['controller' => 'Products', 'action' => 'apiTest']);
 $router->add('{controller}/{action}');
 $router->dispatch($_SERVER['QUERY_STRING']);
 
