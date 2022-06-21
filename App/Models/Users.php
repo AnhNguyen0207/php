@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Core\Model;
 use PDO;
-use \Core\View;
+
 
 class Users extends Model
 {

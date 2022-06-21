@@ -1,118 +1,97 @@
-<x-layout>
-    <x-slot name="styles">
-        <link rel="stylesheet" href="/css/product.css">
-    </x-slot>
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
 
-    <div class="container mt-5 pt-5">
-        <div class="row">
-            <div class="col-md-6">
-                <div id="" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <div style="background-image: url('https://hoangtrungmobile.vn/wp-content/uploads/2021/02/iPhone-11-64Gb-2.png')" class="d-block card-bg-image w-100"></div>
-                        </div>
-                        <div class="carousel-item">
-                            <div style="background-image: url('https://hoangtrungmobile.vn/wp-content/uploads/2021/02/iPhone-11-64Gb-2.png')" class="d-block card-bg-image w-100"></div>
-                        </div>
-                        <div class="carousel-item">
-                            <div style="background-image: url('https://hoangtrungmobile.vn/wp-content/uploads/2021/02/iPhone-11-64Gb-2.png')" class="d-block card-bg-image w-100"></div>
-                        </div>
+{% block body %}
+<div class="container mt-5 pt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <div id="" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div style="background-image: url('https://hoangtrungmobile.vn/wp-content/uploads/2021/02/iPhone-11-64Gb-2.png')" class="d-block card-bg-image w-100"></div>
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                </div>
-            </div>
-            <div class="col-md-6 mt-4">
-                @if(Auth::user())
-                    <div class="d-flex justify-content-between">
-                        <div class="">
-                            <div class="product-name fs-4 fw-bold">iPhone 13 128GB</div>
-                            <div class="mt-2">
-                                <span class="my-2"><small><del>21.980.000</del></small> <b>17.000.000</b></span>
-                                <span class="badge bg-danger">Giảm 20%</span>
-                            </div>
-                        </div>
-                        <div class="d-flex">
-                            <div>
-                                <a href="/product/1/edit" class="btn btn-outline-info">Sửa</a>
-                                <button class="btn btn-outline-danger"
-                                onclick="confirmDelete(undefined, function (){})">Xóa</button>
-                            </div>
-                        </div>
+                    <div class="carousel-item">
+                        <div style="background-image: url('https://hoangtrungmobile.vn/wp-content/uploads/2021/02/iPhone-11-64Gb-2.png')" class="d-block card-bg-image w-100"></div>
                     </div>
-
-                @else
-                    <div class="product-name fs-4 fw-bold">iPhone 13 128GB</div>
-                    <div class="mt-2">
-                        <span class="my-2"><small><del>21.980.000</del></small> <b>17.000.000</b></span>
-                        <span class="badge bg-danger">Giảm 20%</span>
-                    </div>
-                @endif
-                <div class="product-description text-gray my-4">
-                    iPhone 13 series 2021 phiên bản thường, Mini, Pro, Pro Max - Trợ giá lên đời 1 triệu. Điện thoại iPhone 13
-                </div>
-                <div class="fs-5 fw-bold mt-4 mb-2">Bộ nhớ</div>
-                <div class="card">
-                    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-                        <label class="btn btn-outline-secondary" for="btnradio1">64 GB</label>
-
-                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-                        <label class="btn btn-outline-secondary" for="btnradio2">128 GB</label>
-
-                        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
-                        <label class="btn btn-outline-secondary" for="btnradio3">256 GB</label>
+                    <div class="carousel-item">
+                        <div style="background-image: url('https://hoangtrungmobile.vn/wp-content/uploads/2021/02/iPhone-11-64Gb-2.png')" class="d-block card-bg-image w-100"></div>
                     </div>
                 </div>
-                <div class="fs-5 fw-bold mt-4 mb-2">Màu sắc</div>
-                <div class="btn-group">
-                    <div class="box-color option" style="background-color: red"
-                         data-bs-toggle="popover" data-bs-html="true"  data-bs-trigger="hover focus"
-                         data-bs-content='<img class="w-100" src="https://cdn.tgdd.vn/Products/Images/42/225380/iphone-12-mini-mau-tim-3-600x600.jpg">'></div>
-                    <div class="box-color option" style="background-color: black"
-                         data-bs-toggle="popover" data-bs-html="true"  data-bs-trigger="hover focus"
-                         data-bs-content='<img class="w-100" src="https://cdn.tgdd.vn/Products/Images/42/225380/iphone-12-mini-mau-tim-3-600x600.jpg">'></div>
-                    <div class="box-color option" style="background-color: white"
-                         data-bs-toggle="popover" data-bs-html="true"  data-bs-trigger="hover focus"
-                         data-bs-content='<img class="w-100" src="https://cdn.tgdd.vn/Products/Images/42/225380/iphone-12-mini-mau-tim-3-600x600.jpg">'></div>
-                    <div class="box-color option" style="background-color: yellow"
-                         data-bs-toggle="popover" data-bs-html="true"  data-bs-trigger="hover focus"
-                         data-bs-content='<img class="w-100" src="https://cdn.tgdd.vn/Products/Images/42/225380/iphone-12-mini-mau-tim-3-600x600.jpg">'></div>
-                </div>
-                <div class="fs-5 fw-bold mt-4 mb-2">Thông số kỹ thuật</div>
-                <div class="shadow rounded-3 px-4 py-3">
-                    <small class="text-gray">
-                        <p><i class="fa-solid fa-microchip"></i> Ram: 8GB</p>
-                        <p><i class="fa-solid fa-display"></i> Màn hình: 5.9 inch, OLED 3D</p>
-                        <p><i class="fa-solid fa-memory"></i> Bộ nhớ: 128GB</p>
-                        <p><i class="fa-solid fa-video"></i> Camera: 3 camera kỹ thuật số 12mp, camera trước 8mp</p>
-                    </small>
-                </div>
-                <div class="mt-5">
-                        <div class="d-flex">
-                            <div data-bs-target="#modalAdvise" data-bs-toggle="modal" class="w-50 btn bg-transparent border-none"><i class="fa-solid fa-phone"></i> Nhận tư vấn trực tiếp</div>
-                            <button data-bs-toggle="offcanvas" data-bs-target="#canvasCart" class="btn bg-app btn-app w-50"><i class="fa-solid fa-cart-arrow-down"></i> Thêm vào giỏ hàng ngay</button>
-                        </div>
-                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
             </div>
         </div>
-        <div class="mt-5">
-            <div class="fs-4 fw-bold">
-                Thông tin chi tiết sản phẩm
+        <div class="col-md-6 mt-4">
+                <div class="d-flex justify-content-between">
+                    <div class="">
+                        <div class="product-name fs-4 fw-bold">
+                            {{product.name}}    
+                        </div>
+                    </div>
+                    <div class="d-flex">
+                        <div>
+                            <a href="/product/1/edit" class="btn btn-outline-info">Sửa</a>
+                            <button class="btn btn-outline-danger"
+                            onclick="confirmDelete(undefined, function (){})">Xóa</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-2">
+                    <b>{{product.price}}đ</b>
+                </div>
+            <div class="product-description text-gray my-4">
+                {{product.description}}    
             </div>
-            <div class="my-4"></div>
+            
+            <div class="fs-5 fw-bold mt-4 mb-2">Màu sắc</div>
+            <div class="btn-group">
+                {% for color in product.listItems.color %}
+                    <div class="box-color option" style="background-color: {{color.value}}"
+                    data-bs-toggle="popover" data-bs-html="true"  data-bs-trigger="hover focus"
+                    data-bs-content='<img class="w-100" src="{{color.image}}">'></div>
+                {% endfor %}
+            </div>
+            <div class="fs-5 fw-bold mt-4 mb-2">Thông số kỹ thuật</div>
+            <div class="shadow rounded-3 px-4 py-3">
+                <small class="text-gray">
+                    <p><i class="fa-solid fa-microchip"></i> Ram: {{product.listItems.ram.value}}</p>
+                    <p><i class="fa-solid fa-display"></i> Màn hình: {{product.listItems.display.value}}</p>
+                    <p><i class="fa-solid fa-memory"></i> Bộ nhớ: {{product.memory}}</p>
+                    <p><i class="fa-solid fa-video"></i> Camera: {{product.listItems.camera.value}}</p>
+                </small>
+            </div>
+            <div class="mt-5">
+                    <div class="d-flex">
+                        <div data-bs-target="#modalAdvise" data-bs-toggle="modal" class="w-50 btn bg-transparent border-none"><i class="fa-solid fa-phone"></i> Nhận tư vấn trực tiếp</div>
+                        <button data-bs-toggle="offcanvas" data-bs-target="#canvasCart" class="btn bg-app btn-app w-50"><i class="fa-solid fa-cart-arrow-down"></i> Thêm vào giỏ hàng ngay</button>
+                    </div>
+            </div>
         </div>
     </div>
-    <x-modal-advise></x-modal-advise>
-    <x-slot name="scripts">
-    </x-slot>
-</x-layout>
+    <div class="mt-5">
+        <div class="fs-4 fw-bold">
+            Thông tin chi tiết sản phẩm
+        </div>
+        <div id="printDetail" class="my-4">
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+{% block footer %}
+    <script>
+        var str = '{{product.detail}}';
+    </script>
+{% endblock %}
+
+
+
 
 
 

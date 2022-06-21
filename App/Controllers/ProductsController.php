@@ -6,17 +6,56 @@ class ProductsController extends \Core\Controller
 
 {
     public function testAction(){
+        $relation['productItem'] = 1;
         $products = Products::getAll();
         View::renderTemplate('test.html', [
             'products' =>$products,
         ]);
     }
+    public function searchAction(){
+        $id = $_GET['id'];
+        $product = Products::findById($id);
+        $product->listItems = $this->handleItems($product->items);
+        print_r($product->listItems['ram']['value']);
+        View::renderTemplate('product-detail.blade.html',[
+            'product' => $product,
+        ]);
+    }
+
+    public function handleItems($items = [])
+    {
+        $listItems = [];
+        $listItems['color'] = [];
+        foreach($items as $item){
+            switch($item['type']){
+                case 'color':
+                    array_push($listItems['color'],$item);
+                    break;
+                    case 'camera':
+                        $listItems['camera'] = $item;
+                        break;
+                        case 'display':
+                            $listItems['display'] = $item;
+                            break;
+                            case 'ram':
+                                $listItems['ram'] = $item;
+                                break;
+            }
+        }
+
+        return $listItems;
+    }
+
     public function  indexAction()
     {
         $products = Products::getAll();
         View::renderTemplate('welcome.blade.html',[
             'products' => $products
         ]);
+    }
+    public function  manageAction()
+    {
+        View::renderTemplate('manage.blade.html');
     }
     
     public function  createAction()
@@ -27,6 +66,7 @@ class ProductsController extends \Core\Controller
             $products->setCategoryId($_POST['product_category_id']);
             $products->setDescription($_POST['description']);
             $products->setImage($_POST['first_image']);
+
             $products->setType($_POST['type']);
             $products->setMemoty($_POST['memory']);
             $products->setDetail($_POST['detail']);

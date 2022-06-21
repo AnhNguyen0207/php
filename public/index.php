@@ -34,9 +34,11 @@ $router->add('', ['controller' => 'Home', 'action' => 'index']);
 $router->add('Login', ['controller' => 'Login', 'action' => 'Signin']);
 $router->add('Products', ['controller' => 'Products', 'action' => 'index']);
 $router->add('Products/test', ['controller' => 'Products', 'action' => 'test']);
+$router->add('Products/search', ['controller' => 'Products', 'action' => 'search']);
 $router->add('Products/create', ['controller' => 'Products', 'action' => 'create']);
 $router->add('Products/update', ['controller' => 'Products', 'action' => 'update']);
 $router->add('Products/delete', ['controller' => 'Products', 'action' => 'delete']);
+$router->add('Products/manage', ['controller' => 'Products', 'action' => 'manage']);
 $router->add('{controller}/{action}');
 $router->dispatch($_SERVER['QUERY_STRING']);
 

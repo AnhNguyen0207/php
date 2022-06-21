@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Models;
-
 use Core\Model;
 use PDO;
 
@@ -106,13 +105,24 @@ class Products extends Model
     }
 
 
-    public static function getAll()
+
+    public static function getAll($relation = [])
     {
         $sql = 'SELECT * FROM products';
         $db = static::getDB();
         $stmt = $db->prepare($sql);
         $stmt->execute();
-        return $stmt->fetchAll();
+        $products = $stmt->fetchAll();
+        if((isset($relation['productItem']))){
+            foreach($products as $key=>$product){
+                $dbItem = "SELECT * FROM product_item where product_id = '$product->id'";
+                $s = $db->prepare($dbItem);
+                $s->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+                $s->execute();
+                $products[$key]->items = $s->fetchAll();
+            }
+        }
+        return $products;
     }
     
     public static function create(Products $products)
@@ -121,7 +131,7 @@ class Products extends Model
                 VALUES ('$products->name','$products->product_category_id','$products->description','$products->first_image','$products->type','$products->memory','$products->detail','$products->price')";
         $db = static::getDB();
         $stmt = $db->prepare($sql);
-        // $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
         return $stmt->execute();
        
     
@@ -130,17 +140,24 @@ class Products extends Model
     {
         $sql = "SELECT * FROM products WHERE id = '$id'";
         $db = static::getDB();
-        $stmt = $db->prepare($sql);
-        // $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt = $db->prepare($sql);     
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
         $stmt->execute();
-        return $stmt->fetch();
+        $product=$stmt->fetch();
+
+        $item = "SELECT * FROM product_item where product_id = '$id'";
+        $i = $db->prepare($item);
+        $i->execute();
+        $product->items = $i->fetchAll();
+
+        return $product;
     }
     public static function update(Products $products)
     {
         $sql = "UPDATE products SET name = '$products->name', product_category_id = '$products->product_category_id', description = '$products->description', first_image = '$products->first_image', type = '$products->type', memory = '$products->memory', detail = '$products->detail', price = '$products->price' WHERE id = '$products->id'";
         $db = static::getDB();
         $stmt = $db->prepare($sql);
-        // $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
         return $stmt->execute();
         
     }
@@ -149,7 +166,7 @@ class Products extends Model
         $sql = "DELETE FROM products WHERE id = '$products->id'";
         $db = static::getDB();
         $stmt = $db->prepare($sql);
-        // $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
         $result = $stmt->execute();  
         if($result)
         {
