@@ -151,9 +151,15 @@
 <script src="/js/app.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"></script>
 <script>
-         axios.get('http://php.com.vn:81/Products/test').then((t)=>{
-        console.log(t);
-    })
+    const products= 1;
+        $(function(){
+            axios.post('/Products/api',{
+                products: 1
+            })
+            .then((t)=>{
+            console.log(t);
+            })
+        })
 </script>
 </body>
 </html>
