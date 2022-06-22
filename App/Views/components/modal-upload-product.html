@@ -9,12 +9,12 @@
                 <form method="POST" action="/products/create" id="formUploadProduct" onsubmit="return product.create()">
                     <label for="productImage">Hình ảnh</label>
                     <div class="px-4">
-                        <input name="first_image" class="form-control required my-2" type="text" placeholder="Hình ảnh đại diện">
+                        <input name="first_image" class="form-control required my-2" type="text" placeholder="Hình ảnh đại diện *">
                         <input name="second_image" class="form-control my-2" type="text" placeholder="Hình ảnh minh họa">
                         <input name="third_image" class="form-control my-2" type="text" placeholder="Hình ảnh minh họa">
                     </div>
                     <div class="form-group">
-                        <label>Tên sản phẩm</label>
+                        <label>Tên sản phẩm <span class="text-danger">*</span></label>
                         <input name="name" class="form-control required my-2" type="text" placeholder="Tên sản phẩm">
                     </div>
                     <div class="form-group">
@@ -25,7 +25,7 @@
                     <div class="form-group">
                         <div class="mb-4 row">
                             <div class="col-12 col-lg-5">
-                                <label for="exampleFormControlTextarea1" class="form-label fs-6 fw-bold">Gốc</label>
+                                <label for="exampleFormControlTextarea1" class="form-label">Giá sản phẩm  <span class="text-danger">*</span></label>
                                 <div class="input-group mb-3">
                                     <input data-type="price" name="price" type="number" class="form-control required" placeholder="Đơn vị: VND">
                                     <span class="input-group-text">VND</span>
@@ -34,7 +34,7 @@
                         </div>
                     </div>
                     <div class="form-group my-4">
-                        <lable>Chọn loại</lable>
+                        <lable>Chọn loại <span class="text-danger">*</span></lable>
                         <div class="dropdown dropdown-select">
                             <input class="input-hidden" name="typeProduct" type="hidden" value="">  
                             <button id="productType" data-type="" class="dropdown-toggle btn w-100 text-start d-flex justify-content-between rounded-20 bg-gray border-0 p-2 px-3"
@@ -48,7 +48,7 @@
                         </div>
                     </div>
                     <div class="form-group my-4">
-                        <lable>Chọn trạng thái</lable>
+                        <lable>Chọn trạng thái <span class="text-danger">*</span></lable>
                         <div class="dropdown dropdown-select">
                         <input class="input-hidden" name="status" type="hidden">       
                             <button id="productStatus"  data-type="" class="dropdown-toggle btn w-100 text-start d-flex justify-content-between rounded-20 bg-gray border-0 p-2 px-3"

@@ -13,6 +13,7 @@ class Orders extends Model
     private $product_id;
     private $price;
     private $numb;
+    private $created_at;
 
     public function __construct($products = [])
     {
@@ -20,7 +21,14 @@ class Orders extends Model
             $this->$key = $value;
         };
     }
-
+    function getCreated_at()
+    {
+        return $this->created_at;
+    }
+    function setCreated_at($created_at)
+    {
+        $this->created_at = $created_at;
+    }
     function getId()
     {
         return $this->id;
@@ -100,7 +108,18 @@ class Orders extends Model
         $stmt = $db->prepare($sql);
         // $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
         $stmt->execute();
-        return $stmt->fetchAll();
+        $orders = $stmt->fetchAll();
+        
+        foreach($orders as $key=>$order){
+            $product_id = $order['product_id'];
+            $sql = "SELECT * FROM products WHERE id = $product_id";
+            $db = static::getDB();
+            $stmt2 = $db->prepare($sql);
+            // $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+            $stmt2->execute();
+            $orders[$key]['product'] = $stmt2->fetch();
+        }
+        return  $orders;    
     }
 
     public static function create(Orders $orders)
@@ -123,5 +142,28 @@ class Orders extends Model
         // $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
         $stmt->execute();
         return $stmt->fetchAll();
+    }
+
+    
+    public static function getByPhone($phone)
+    {
+        $sql = "SELECT * FROM orders WHERE phone = '$phone'";
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        // $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->execute();
+        $orders = $stmt->fetchAll();
+
+        foreach($orders as $key=>$order){
+            $product_id = $order['product_id'];
+            $sql = "SELECT * FROM products WHERE id = $product_id";
+            $db = static::getDB();
+            $stmt2 = $db->prepare($sql);
+            // $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+            $stmt2->execute();
+            $orders[$key]['product'] = $stmt2->fetch();
+        }
+
+        return $orders;
     }
 }

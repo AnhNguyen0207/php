@@ -19,7 +19,7 @@
                                 <a class="nav-link text-black" href="/">Trang chủ</a>
                             </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-black" href="/manage">Trang quản lý</a>
+                                    <a class="nav-link text-black" href="/status-order">Tra cứu hoá đơn</a>
                                 </li>
                             <li class="nav-item">
                                 <a class="nav-link text-black" href="/products">Sản phẩm</a>
@@ -27,16 +27,13 @@
                             <li class="nav-item">
                                 <a class="nav-link text-black" href="/products">Phụ kiện</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-black" href="/combos">Combo</a>
-                            </li>
                         </ul>
                         <ul id="" class="nav navbar-nav navbar-right d-flex">
-                            <li class="nav-item cursor-pointer"
+                            <li onclick="cart.show()" class="nav-item cursor-pointer cart-shopping"
                                 data-bs-toggle="offcanvas" data-bs-target="#canvasCart">
                                 <small>
                                     <i class="fa-solid fa-cart-shopping"></i>
-                                    <span class="badge badge-numb-product rounded-pill bg-danger ms-1">4</span>
+                                    <span class="badge badge-numb-product rounded-pill bg-danger ms-1">0</span>
                                 </small>
                             </li>
                             {% if current_user %}

@@ -7,37 +7,9 @@
             </div>
         </div>
         <div class="offcanvas-body cart-body px-0">
-            <div id="print-cart-products" data-total-price="0" data-total-discount-price="0">
-                <div data-product-id="127" data-price="1220000" data-discount_price="1220000"
-                     class="card-cart card-product product px-5">
-                    <div class="d-flex my-4">
-                        <div class="me-3">
-                            <a href="/products/127">
-                                <img class="rounded-2 product-fixed-img"
-                                                         src="https://cdn.hoanghamobile.com/i/preview/Uploads/2021/09/15/image-removebg-preview-12.png"></a>
-                        </div>
-                        <div class="d-flex flex-column justify-content-between flex-fill">
-                            <div class="d-flex justify-content-between my-md-0">
-                                <div>
-                                    <a href="/products/127">
-                                        <div class="fs-6 fw-bold">iphone 13 pro max color</div>
-                                    </a>
-                                    <div class="text-gray"><small>Mua Điện thoại di động Apple iPhone 13 - Chính hãng VN/A Giá Rẻ, Nhiều Ưu Đãi Tại Hoàng Hà Mobile. Free Ship Toàn Quốc.</small></div>
-                                </div>
-                                <div onclick="cart.remove(this)" class="cursor-pointer ms-4">
-                                    <i class="fa-solid fa-trash ms-3"></i>
-                                    <!-- <i class="fa-solid fa-trash-can fs-6 text-gray cursor-pointer"></i> Font Awesome fontawesome.com -->
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div></div>
-                                <small class="d-none d-md-block fw-bold ms-3">1.220.000đ</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div id="cartPrintProducts">
+              
             </div>
-            <div id="print-cart-combos" data-total-price="0" data-total-discount-price="0"></div>
             <div id="loadingCart" class="loading w-100 text-center mt-5 pt-5">
                 <div class="text-center bg-gray btn btn-sm btn-round"><span class="fas fa-sync fa-spin me-2"
                                                                             aria-hidden="true"></span>Loading...
@@ -50,13 +22,12 @@
                     <div>Tổng số tiền</div>
                     <div>
                         <small>
-                            <del id="cartTotalPrice">0đ</del>
+                            <b id="cartTotalPrice">0đ</b>
                         </small>
-                        <span class="fw-4"><b id="cartTotalDiscountPrice">0đ</b></span>
                     </div>
                 </div>
-                <button id="cartCheckout" onclick="cart.checkout(this)" class="btn btn-app bg-app w-100">Tiến hành thanh
-                    toán
+                <button onclick="cart.settingCartData()" id="cartCheckout" data-bs-toggle="modal" data-bs-target="#modalCheckout" class="btn btn-app bg-app w-100">
+                    Tiến hành đặt hàng
                 </button>
             </div>
         </div>

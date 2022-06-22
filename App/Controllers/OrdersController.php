@@ -6,23 +6,32 @@ class OrdersController extends \Core\Controller
 {
     public function createAction()
     {
-        $orders = new Orders();
-        if (isset($_POST['submit'])){
+        $items = $_POST['item'];
+        $items = json_decode($items);
+        foreach($items as $item){
+            $orders = new Orders();
             $orders->setPhone($_POST['phone']);
             $orders->setName($_POST['name']);
             $orders->setAddress($_POST['address']);
-            $orders->setStatus($_POST['status']);
-            $orders->setProduct_id($_POST['product_id']);
-            $orders->setPrice($_POST['price']);
-            $orders->setNumb($_POST['numb']);
+            $orders->setStatus('pending');
+            $orders->setProduct_id($item->id);
+            $orders->setPrice($item->price);
+            $orders->setNumb($item->numb);
             
             $create = Orders::create($orders);
-            if($create)
-            {
-                $_SESSION["alert"] = 'success';
-                header('Location: /');
-            }
         }
-            View::renderTemplate('checkout.html');
+        
+        if($create)
+        {
+            $_SESSION["alert"] = 'success';
+            header('Location: /status-order?phone='.$_POST['phone']);
+        }
+    }
+
+    public  function searchOrderAction()
+    {
+        $phone = isset($_GET['phone']) ? $_GET['phone'] : 0;
+        $orders = Orders::getByPhone($phone);   
+        View::renderTemplate('status-order.html',['orders'=>$orders]);
     }
 }

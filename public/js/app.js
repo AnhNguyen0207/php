@@ -45,7 +45,9 @@ window.addEventListener('scroll', function (e) {
         trans(elements[i], -0.5);
     }
 });
-
+function formatPrice(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+}
 function quickToastMixin(option, title) {
     const Toast = Swal.mixin({
         toast: true,

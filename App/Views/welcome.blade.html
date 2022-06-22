@@ -52,7 +52,7 @@
                 <div class="text-start text-bold fs-4 fw-bold">
                     Sản phẩm nổi bật
                 </div>
-                <a href="/product" class="text-end d-block text-black-50 fs-6">
+                <a href="/products" class="text-end d-block text-black-50 fs-6">
                     <span>Xem tất cả sản phẩm</span>
                     <i class="fa-solid fa-arrow-right"></i>
                 </a>
@@ -60,15 +60,6 @@
             {% for item in products %}
                     {% include "components/card-product.blade.html" %}
             {%endfor%}
-    </div>
-</div>
-<div class="offcanvas offcanvas-end" tabindex="-1" id="canvasCart" aria-labelledby="offcanvasRightLabel">
-    <div class="offcanvas-header">
-        <h5 id="offcanvasRightLabel">Offcanvas right</h5>
-        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body">
-        ...
     </div>
 </div>
 

@@ -188,24 +188,52 @@ class Products extends Model
 
 
     //method
-    public static function getAll()
+    public static function getProductsHomePage($limit)
+    {
+        $sql = "SELECT * FROM products WHERE status = 'published' limit ".$limit;
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        // $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+    public static function getProductsPage($filter)
+    {
+        $sql = "SELECT * FROM products WHERE status = 'published' ";
+        if(!empty($filter['type'])){
+            $type = $filter['type'];
+            $sql = $sql."AND type = '$type'";
+        } else{
+            $sql = $sql."AND type = 'phone'";
+        }
+        if(!empty($filter['order_by'])){
+            switch ($filter['order_by']){
+                case 'expensive':
+                    break;
+                    case 'chip':
+                        break;
+            }
+        }
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        // $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+    public static function getAll($filter)
     {
         $sql = 'SELECT * FROM products';
+        if(!empty($filter['type'])){
+            $type = $filter['type'];
+            $sql = $sql." WHERE type = '$type'";
+        } 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
         // $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
         $stmt->execute();
         return $stmt->fetchAll();
     }
-    public static function getAllPublished()
-    {
-        $sql = "SELECT * FROM products WHERE status = 'published'";
-        $db = static::getDB();
-        $stmt = $db->prepare($sql);
-        // $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-        $stmt->execute();
-        return $stmt->fetchAll();
-    }
+
     public static function findById($id)
     {
         $sql = "SELECT * FROM products WHERE id = '$id'";
@@ -216,6 +244,25 @@ class Products extends Model
         return $stmt->fetch();
     }
 
+    public static function findByName($name)
+    {
+        $sql = "SELECT * FROM products WHERE name like '%$name%'";
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);     
+        // $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    public static function findListId($list)
+    {
+        $sql = "SELECT * FROM products WHERE id in ($list)";
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);     
+        // $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
     public static function create(Products $products)
     {
         $sql = "INSERT INTO products (name, description, first_image, second_image, third_image, type, status, memory, detail, price, cam, display, ram, rom, color) 
