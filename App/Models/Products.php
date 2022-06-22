@@ -197,6 +197,7 @@ class Products extends Model
         $stmt->execute();
         return $stmt->fetchAll();
     }
+
     public static function getProductsPage($filter)
     {
         $sql = "SELECT * FROM products WHERE status = 'published' ";
@@ -263,6 +264,7 @@ class Products extends Model
         $stmt->execute();
         return $stmt->fetchAll();
     }
+    
     public static function create(Products $products)
     {
         $sql = "INSERT INTO products (name, description, first_image, second_image, third_image, type, status, memory, detail, price, cam, display, ram, rom, color) 
