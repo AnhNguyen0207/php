@@ -6,7 +6,7 @@ use Core\Model;
 use PDO;
 
 
-class Users extends Model
+class User extends Model
 {
     private $id;
     private $email;
@@ -58,13 +58,13 @@ class Users extends Model
     }
 
 
-    public function login(Users $users)
+    public static function login($email)
     {
-        $sql = "SELECT * FROM users WHERE email = '$users->email'";
+        $sql = "SELECT * FROM users WHERE email = '$email'";
         $db = static::getDB();
-        $stmt = $db->prepare($sql);
-        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt = $db->prepare($sql);     
+        // $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
         $stmt->execute();
-        return $stmt->fetch(); 
+        return $stmt->fetch();
     }
 }

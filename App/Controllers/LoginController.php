@@ -1,35 +1,41 @@
 <?php
 
 namespace App\Controllers;
+
+use App\Flash;
 use \Core\View;
-use \App\Models\Users;
+use \App\Models\User;
 use mysqli;
 
 class LoginController extends \Core\Controller
 {
-    public function SigninAction()
+    public function signinAction()
     {
-        $users = new Users();
-        if(isset($_POST['submit']))
-        {
-            $users->setEmail($_POST['email']);
+        $users = new User();
+        $email = isset($_POST['email']) ? $_POST['email'] : '';
+        if(!empty($email)){
             $password_input = $_POST['pwd'];
-            $result = Users::login($users);
-            if(mysqli_num_rows($result))
-            {
-                while($row = mysqli_fetch_all($result))
-                {
-                    $users->id = $row["id"];
-                    $users->email = $row["email"];
-                    $users->password = $row["password"];
+            $result = User::login($email);
+            if($result){
+                if($password_input == $result['password']){
+                    View::renderTemplate('login.html',['action'=>'loginSuccess']);
+                    $_SESSION['auth'] = $email;
+                    return;
+                } else{
+                    View::renderTemplate('login.html',['action'=>0]);
+                    return;
                 }
-                if(password_verify($password_input, $users->password))
-                {
-                    $_SESSION['id'] = $users->id;
-                    View::renderTemplate('manage.blade.html');
-                }
+            }else {
+                View::renderTemplate('login.html',['action'=>0]);
+                return;
             }
         }
-        View::renderTemplate('login.blade.html');
+        View::renderTemplate('login.html');
+    }
+
+    public function signoutAction(){
+        $_SESSION['auth'] = '';
+        unset($_SESSION['auth']);
+        header('Location: /login');
     }
 }

@@ -10,10 +10,19 @@ class Products extends Model
     private $name;
     private $description;
     private $first_image;
+    private $second_image;
+    private $third_image;
     private $type;
+    private $status;
     private $memory;
     private $detail;
     private $price;
+    private $cam;
+    private $display;
+    private $ram;
+    private $rom;
+    private $color;
+    private $create_id;
 
     public function __construct($products = [])
     {
@@ -49,13 +58,31 @@ class Products extends Model
        $this->description = $description; 
     }
 
-    function getImage()
+    function getFirstImage()
     {
         return $this->first_image;
     }
-    function setImage($first_image)
+    function setFirstImage($first_image)
     {
        $this->first_image = $first_image; 
+    }
+
+    function getSecondImage()
+    {
+        return $this->second_image;
+    }
+    function setSecondImage($second_image)
+    {
+       $this->second_image = $second_image; 
+    }
+
+    function getThirdImage()
+    {
+        return $this->third_image;
+    }
+    function setThirdImage($third_image)
+    {
+       $this->third_image = $third_image; 
     }
 
     function getType()
@@ -65,6 +92,15 @@ class Products extends Model
     function setType($type)
     {
        $this->type = $type; 
+    }
+
+    function getStatus()
+    {
+        return $this->status;
+    }
+    function setStatus($status)
+    {
+       $this->status = $status; 
     }
 
     function getMemory()
@@ -94,82 +130,122 @@ class Products extends Model
        $this->price = $price; 
     }
 
+    function getCam()
+    {
+        return $this->cam;
+    }
+    function setCam($cam)
+    {
+       $this->cam = $cam; 
+    }
+
+    function getDisplay()
+    {
+        return $this->display;
+    }
+    function setDisplay($display)
+    {
+       $this->display = $display; 
+    }
+
+    function getRam()
+    {
+        return $this->ram;
+    }
+    function setRam($ram)
+    {
+       $this->ram = $ram; 
+    }
+
+    function getRom()
+    {
+        return $this->rom;
+    }
+    function setRom($rom)
+    {
+       $this->rom = $rom; 
+    }
+
+    function getColor()
+    {
+        return $this->color;
+    }
+    function setColor($color)
+    {
+       $this->color = $color; 
+    }
+
+    function getCreateId()
+    {
+        return $this->create_id;
+    }
+    function setCreateId($create_id)
+    {
+       $this->create_id = $create_id; 
+    }
 
 
-    public static function getAll($relation = [])
+
+
+    //method
+    public static function getAll()
     {
         $sql = 'SELECT * FROM products';
         $db = static::getDB();
         $stmt = $db->prepare($sql);
+        // $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
         $stmt->execute();
-        $products = $stmt->fetchAll();
-        if((isset($relation['productItem']))){
-            foreach($products as $key=>$product){
-                $dbItem = "SELECT * FROM product_item where product_id = '$product->id'";
-                $s = $db->prepare($dbItem);
-                $s->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-                $s->execute();
-                $products[$key]->items = $s->fetchAll();
-            }
-        }
-        return $products;
+        return $stmt->fetchAll();
     }
-    
-    public static function create(Products $products)
+    public static function getAllPublished()
     {
-        $sql = "INSERT INTO products (name, description, first_image, type, memory, detail, price) 
-                VALUES ('$products->name','$products->description','$products->first_image','$products->type','$products->memory','$products->detail','$products->price')";
+        $sql = "SELECT * FROM products WHERE status = 'published'";
         $db = static::getDB();
         $stmt = $db->prepare($sql);
-        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-
-        $item = "SELECT * FROM product_item where product_id = '$id'";
-        $i = $db->prepare($item);
-        $i->execute();
-        $product->items = $i->fetchAll();
-        return $stmt->execute();
-       
-    
+        // $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->execute();
+        return $stmt->fetchAll();
     }
     public static function findById($id)
     {
         $sql = "SELECT * FROM products WHERE id = '$id'";
         $db = static::getDB();
         $stmt = $db->prepare($sql);     
-        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        // $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
         $stmt->execute();
-        $product=$stmt->fetch();
-
-        $item = "SELECT * FROM product_item where product_id = '$id'";
-        $i = $db->prepare($item);
-        $i->execute();
-        $product->items = $i->fetchAll();
-
-        return $product;
+        return $stmt->fetch();
     }
+
+    public static function create(Products $products)
+    {
+        $sql = "INSERT INTO products (name, description, first_image, second_image, third_image, type, status, memory, detail, price, cam, display, ram, rom, color) 
+                VALUES ('$products->name','$products->description','$products->first_image','$products->second_image','$products->third_image','$products->type','$products->status',
+                '$products->memory','$products->detail','$products->price','$products->cam','$products->display','$products->ram','$products->rom','$products->color')";
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        return $stmt->execute();   
+    }
+
     public static function update(Products $products)
     {
-        $sql = "UPDATE products SET name = '$products->name', product_category_id = '$products->product_category_id', description = '$products->description', first_image = '$products->first_image', type = '$products->type', memory = '$products->memory', detail = '$products->detail', price = '$products->price' WHERE id = '$products->id'";
+        $sql = "UPDATE products SET name = '$products->name', description = '$products->description', first_image = '$products->first_image', second_image = '$products->second_image', third_image = '$products->third_image', type = '$products->type', status = '$products->status', 
+        memory = '$products->memory', detail = '$products->detail', price = '$products->price', cam = '$products->cam', display = '$products->display', ram = '$products->ram', rom = '$products->rom', color = '$products->color' WHERE id = '$products->id'";
+
         $db = static::getDB();
         $stmt = $db->prepare($sql);
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
         return $stmt->execute();
         
     }
-     public static function delete(Products $products)
+     public static function delete(Products $product)
      {
-        $sql = "DELETE FROM products WHERE id = '$products->id'";
+        $sql = "DELETE FROM products WHERE id = '$product->id'";
         $db = static::getDB();
         $stmt = $db->prepare($sql);
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-        $result = $stmt->execute();  
-        if($result)
-        {
-            return true;
-        }else{
-            return false;
-        }
-
+        return  $stmt->execute();  
      }
 }
     

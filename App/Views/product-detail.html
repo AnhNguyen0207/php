@@ -34,13 +34,6 @@
                             {{product.name}}    
                         </div>
                     </div>
-                    <div class="d-flex">
-                        <div>
-                            <a href="/product/1/edit" class="btn btn-outline-info">Sửa</a>
-                            <button class="btn btn-outline-danger"
-                            onclick="confirmDelete(undefined, function (){})">Xóa</button>
-                        </div>
-                    </div>
                 </div>
                 <div class="mt-2">
                     <b>{{product.price}}đ</b>
@@ -51,19 +44,18 @@
             
             <div class="fs-5 fw-bold mt-4 mb-2">Màu sắc</div>
             <div class="btn-group">
-                {% for color in product.listItems.color %}
-                    <div class="box-color option" style="background-color: {{color.value}}"
-                    data-bs-toggle="popover" data-bs-html="true"  data-bs-trigger="hover focus"
-                    data-bs-content='<img class="w-100" src="{{color.image}}">'></div>
+                {% for color in product.color %}
+                    <div class="box-color option" style="background-color: {{color}}"
+                    data-bs-toggle="popover" data-bs-html="true"></div>
                 {% endfor %}
             </div>
             <div class="fs-5 fw-bold mt-4 mb-2">Thông số kỹ thuật</div>
             <div class="shadow rounded-3 px-4 py-3">
                 <small class="text-gray">
-                    <p><i class="fa-solid fa-microchip"></i> Ram: {{product.listItems.ram.value}}</p>
-                    <p><i class="fa-solid fa-display"></i> Màn hình: {{product.listItems.display.value}}</p>
+                    <p><i class="fa-solid fa-microchip"></i> Ram: {{product.ram}}</p>
+                    <p><i class="fa-solid fa-display"></i> Màn hình: {{product.display}}</p>
                     <p><i class="fa-solid fa-memory"></i> Bộ nhớ: {{product.memory}}</p>
-                    <p><i class="fa-solid fa-video"></i> Camera: {{product.listItems.camera.value}}</p>
+                    <p><i class="fa-solid fa-video"></i> Camera: {{product.cam}}</p>
                 </small>
             </div>
             <div class="mt-5">

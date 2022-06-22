@@ -4,7 +4,6 @@ var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
 })
 
 $(function (){
-    initDropdownSelect();
     initTooltip()
 })
 function initTooltip(){
@@ -90,7 +89,7 @@ function confirmDelete(config = {
             }
         })
 }
-function initDropdownSelect() {
+function initDropdownSelect(callback = undefined) {
     $.each($(".dropdown-select .dropdown-item,.dropdown-option"), function () {
         $(this).click(function (e) {
             const text = $(e.currentTarget).html();
@@ -101,7 +100,8 @@ function initDropdownSelect() {
             $(print).html(text);
             $(print).data('value', value);
             $(this).closest(".dropdown-select").find(".dropdown-item").removeClass('active');
-            $(this).addClass('active')
+            $(this).addClass('active');
+            callback(this);
         })
     })
 

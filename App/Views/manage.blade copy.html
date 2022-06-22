@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="/css/toastr.min.css"/>
     <link rel="stylesheet" href="/css/app.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-
 </head>
 <body>
 <div class="container-fluid">
@@ -98,13 +97,10 @@
                                                         Nhãn hiệu
                                                     </a>
                                                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                                        @if(isset($trademarks))
-                                                            @foreach($trademarks['data'] as $trademark)
                                                                 <li data-value="{{$trademark['id']}}" class="d-flex align-items-center cursor-pointer dropdown-item w-100 mx-2 my-2 rounded-3 w-100">
                                                                     <img src="{{$trademark['icon_url']}}" alt="" class="logo">
                                                                     <a data-value="{{$trademark['id']}}" class="flex-fill mx-2 rounded-10 w-auto">{{$trademark['name']}}</a>
                                                                 </li>
-                                                            @endforeach
                                                         @endif
                                                     </ul>
                                                 </li>

@@ -31,15 +31,15 @@ session_start();
  */
 $router = new Core\Router();
 $router->add('', ['controller' => 'Home', 'action' => 'index']);
-$router->add('Login', ['controller' => 'Login', 'action' => 'Signin']);
-$router->add('Products', ['controller' => 'Products', 'action' => 'index']);
+$router->add('Login', ['controller' => 'Login', 'action' => 'signin']);
+$router->add('Logout', ['controller' => 'Login', 'action' => 'signout']);
 $router->add('Products/test', ['controller' => 'Products', 'action' => 'test']);
-$router->add('Products/search', ['controller' => 'Products', 'action' => 'search']);
+$router->add('Products/detail', ['controller' => 'Products', 'action' => 'detail']);
+$router->add('Products/fetch', ['controller' => 'Products', 'action' => 'fetch']);
 $router->add('Products/create', ['controller' => 'Products', 'action' => 'create']);
 $router->add('Products/update', ['controller' => 'Products', 'action' => 'update']);
 $router->add('Products/delete', ['controller' => 'Products', 'action' => 'delete']);
 $router->add('Products/manage', ['controller' => 'Products', 'action' => 'manage']);
-$router->add('Products/api', ['controller' => 'Products', 'action' => 'apiTest']);
 $router->add('{controller}/{action}');
 $router->dispatch($_SERVER['QUERY_STRING']);
 

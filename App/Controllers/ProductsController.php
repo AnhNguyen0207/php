@@ -1,7 +1,7 @@
 <?php
 namespace App\Controllers;
-use \Core\View;
-use \App\Models\Products;
+use  Core\View;
+use  App\Models\Products;
 class ProductsController extends \Core\Controller
 
 {
@@ -12,121 +12,107 @@ class ProductsController extends \Core\Controller
             'products' =>$products,
         ]);
     }
-    public function searchAction(){
-        $id = $_GET['id'];
-        $product = Products::findById($id);
-        $product->listItems = $this->handleItems($product->items);
-        print_r($product->listItems['ram']['value']);
-        View::renderTemplate('product-detail.blade.html',[
-            'product' => $product,
-        ]);
-    }
-
-    public function handleItems($items = [])
-    {
-        $listItems = [];
-        $listItems['color'] = [];
-        foreach($items as $item){
-            switch($item['type']){
-                case 'color':
-                    array_push($listItems['color'],$item);
-                    break;
-                    case 'camera':
-                        $listItems['camera'] = $item;
-                        break;
-                        case 'display':
-                            $listItems['display'] = $item;
-                            break;
-                            case 'ram':
-                                $listItems['ram'] = $item;
-                                break;
-            }
-        }
-
-        return $listItems;
-    }
-
-    public function  indexAction()
-    {
-        $products = Products::getAll();
-        View::renderTemplate('welcome.blade.html',[
-            'products' => $products
-        ]);
-    }
+    
     public function  manageAction()
     {
-        View::renderTemplate('manage.blade.html');
+        if(isset($_SESSION['auth']) && !empty($_SESSION['auth'])){
+            $products = Products::getAll();
+            View::renderTemplate('manage.html',
+            ['products' => $products]);
+        } else{
+            header('Location: /login');
+        }
     }
     
     public function  createAction()
     {
         $products = new Products();
+
         if (isset($_POST['submit'])) {
             $products->setName($_POST['name']);
             $products->setDescription($_POST['description']);
-            $products->setImage($_POST['first_image']);
-
-            $products->setType($_POST['type']);
+            $products->setFirstImage($_POST['first_image']);
+            $products->setSecondImage($_POST['second_image']);
+            $products->setThirdImage($_POST['third_image']);
+            $products->setType(($_POST['typeProduct']));
+            $products->setStatus(($_POST['status']));
             $products->setMemoty($_POST['memory']);
-            $products->setDetail($_POST['detail']);
+            $products->setDetail(isset($_POST['detail']) ? $_POST['detail'] : '');
             $products->setPrice($_POST['price']);
-
-            $create = Products::create($products);
+            $products->setCam(($_POST['cam']));
+            $products->setDisplay($_POST['display']);
+            $products->setRam($_POST['ram']);
+            $products->setColor($_POST['color']);
             
+
+            $create = Products::create($products);           
             if($create)
             {
-                View::renderTemplate('manage.blade.html');
+                $_SESSION["alert"] = 'success';
+                header('Location: /products/manage');
             }
         }
-        View::renderTemplate('create-product.blade.html');
+        View::renderTemplate('create-product.html');
     }
 
     public function updateAction()
     {
         $products = new Products();
         $id = $_GET['id'];
+
         if(isset($_POST['submit']))
         {
             $products->setId($id);
             $products->setName($_POST['name']);
             $products->setDescription($_POST['description']);
-            $products->setImage($_POST['first_image']);
-            $products->setType($_POST['type']);
+            $products->setFirstImage($_POST['first_image']);
+            $products->setSecondImage($_POST['second_image']);
+            $products->setThirdImage($_POST['third_image']);
+            $products->setType($_POST['typeProduct']);
+            $products->setStatus($_POST['status']);
             $products->setMemoty($_POST['memory']);
-            $products->setDetail($_POST['detail']);
+            $products->setDetail(isset($_POST['detail']) ? $_POST['detail'] : '');
             $products->setPrice($_POST['price']);
+            $products->setCam($_POST['cam']);
+            $products->setDisplay($_POST['display']);
+            $products->setRam($_POST['ram']);
+            $products->setColor($_POST['color']);
+            
 
             $update = Products::update($products); 
 
             if($update)
             {
-                View::renderTemplate('manage.blade.html');
+                header('Location: /products/manage');
             }
         }  
-        View::renderTemplate('update-product.blade.html');
+        View::renderTemplate('update-product.html');
     }
 
 
     public function deleteAction()
     {
-        $products = new Products();
+        $product = new Products();
         $id = $_GET['id'];
-        if(isset($_POST['submit']))
-        {
-            $products->setId($id);
-            $delete = Products::delete($products);
+      
+            $product->setId($id);
+            $delete = Products::delete($product);
             if($delete)
             {
-                View::renderTemplate('manage.blade.html');
+                header('Location: /products/manage');
             }
-        }
-                View::renderTemplate('manage.blade.html');
     }
-    public function apiTestAction(){
-        $products =[
-            
-        ];
-        print_r(json_encode($products));
-        View::renderTemplate('render.html');
+
+    public function fetchAction(){
+        $id = $_GET['id'];
+        $product = Products::findById($id);
+        print_r(json_encode($product));
+    }
+
+    public function detailAction(){
+        $id = $_GET['id'];
+        $product = Products::findById($id);
+        $product['color'] = preg_split ("/\,/", $product['color']); 
+        View::renderTemplate('product-detail.html',['product'=>$product]);
     }
 }
