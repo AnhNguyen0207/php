@@ -30,6 +30,7 @@ session_start();
  * Routing
  */
 $router = new Core\Router();
+
 $router->add('', ['controller' => 'Home', 'action' => 'index']);
 $router->add('Login', ['controller' => 'Login', 'action' => 'signin']);
 $router->add('Logout', ['controller' => 'Login', 'action' => 'signout']);
@@ -43,6 +44,7 @@ $router->add('Products/update', ['controller' => 'Products', 'action' => 'update
 $router->add('Products/delete', ['controller' => 'Products', 'action' => 'delete']);
 $router->add('manage', ['controller' => 'Products', 'action' => 'manage']);
 $router->add('status-order', ['controller' => 'Orders', 'action' => 'searchOrder']);
+
 $router->add('{controller}/{action}');
 $router->dispatch($_SERVER['QUERY_STRING']);
 
